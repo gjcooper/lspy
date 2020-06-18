@@ -1,0 +1,30 @@
+# Example pybook
+pybook/
+
+# vim swap files
+*.swp
+
+# Ignore compiled html site
+lspy/_site
+### GitBook ###
+# # Book build output
+lspy/_build
+
+# eBook build output
+#*.epub
+#*.mobi
+#*.pdf
+# 
+# ### JupyterNotebook ###
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Remove previous ipynb_checkpoints
+#   git rm -r .ipynb_checkpoints/
+#
+
+# ### Python ###
+# # Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
