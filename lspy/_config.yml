@@ -1,7 +1,6 @@
 # Book settings
 title: Learning Statistics with Python
 author: Danielle Navarro (bookdown - Emily Kothe, jupyter-book - Gavin Cooper)
-logo: logo.png
 
 latex:
   latex_documents:

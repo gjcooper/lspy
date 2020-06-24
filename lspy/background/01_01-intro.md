@@ -14,6 +14,7 @@ kernelspec:
 
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
+
 import pandas as pd
 from myst_nb import glue
 from IPython.display import display, HTML
@@ -207,12 +208,12 @@ Okay, now you're just messing with me. Still, I think it should matter to you to
 
 ## Statistics in everyday life
 
->*"We are drowning in information,\ but we are starved for knowledge"*
+>*"We are drowning in information, but we are starved for knowledge"*
 >
 >-Various authors, original probably John Naisbitt
 
 
-When I started writing up my lecture notes I took the 20 most recent news articles posted to the ABC news website. Of those 20 articles, it turned out that 8 of them involved a discussion of something that I would call a statistical topic; 6 of those made a mistake. The most common error, if you're curious, was failing to report baseline data (e.g., the article mentions that 5% of people in situation X have some characteristic Y, but doesn't say how common the characteristic is for everyone else!) The point I'm trying to make here isn't that journalists are bad at statistics (though they almost always are), it's that a  basic knowledge of statistics is very helpful for trying to figure out when someone else is either making a mistake or even lying to you. In fact, one of the biggest things that a knowledge of statistics does to you is cause you to get angry at the newspaper or the internet on a far more frequent basis: you can find a good example of this in Section \@ref(housingpriceexample). In later versions of this book I'll try to include more anecdotes along those lines. 
+When I started writing up my lecture notes I took the 20 most recent news articles posted to the ABC news website. Of those 20 articles, it turned out that 8 of them involved a discussion of something that I would call a statistical topic; 6 of those made a mistake. The most common error, if you're curious, was failing to report baseline data (e.g., the article mentions that 5% of people in situation X have some characteristic Y, but doesn't say how common the characteristic is for everyone else!) The point I'm trying to make here isn't that journalists are bad at statistics (though they almost always are), it's that a  basic knowledge of statistics is very helpful for trying to figure out when someone else is either making a mistake or even lying to you. In fact, one of the biggest things that a knowledge of statistics does to you is cause you to get angry at the newspaper or the internet on a far more frequent basis: you can find a good example of this in Section {doc}`some text <workingdata/descriptives/housingpriceexample`. In later versions of this book I'll try to include more anecdotes along those lines.
 
 
 ## There's more to research methods than statistics
@@ -225,6 +226,8 @@ But note that "urgent" is different from "important" -- they both matter. I real
 
 ```{bibliography} ../refs.bib
 ```
+
+## Footnotes
 
 [^auden]: The quote comes from Auden's 1946 poem *Under Which Lyre: A Reactionary Tract for the Times*, delivered as part of a commencement address at Harvard University. The history of the poem is kind of interesting: <http://harvardmagazine.com/2007/11/a-poets-warning.html>
 [^sense]: Including the suggestion that common sense is in short supply among scientists.
