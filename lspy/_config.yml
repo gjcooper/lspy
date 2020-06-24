@@ -9,3 +9,9 @@ latex:
 
 execute:
   execute_notebooks: force
+  exclude_patterns:
+    - 'Untitled*'
+
+# sphinx:
+#   extensions:
+#     - myst_nb

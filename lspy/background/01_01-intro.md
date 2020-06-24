@@ -1,3 +1,38 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: '0.8'
+    jupytext_version: 1.4.1+dev
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+import pandas as pd
+from myst_nb import glue
+from IPython.display import display, HTML
+```
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+
+simpson = pd.DataFrame([
+    ["A", "B", "C", "D", "E", "F"],
+    [825,560,325,417,191,272],
+    ["62%","63%","37%","33%","28%","6%"],
+    [108,25,593,375,393,341],
+    ["82%","68%","34%","35%","24%","7%"]
+])
+simpson = simpson.transpose()
+simpson.columns=["Department","Male Applicants", "Male Percent Admitted", "Female Applicants", "Female Percent admitted"]
+glue("simpson_table", simpson.set_index("Department"))
+```
+
 # Why do we learn statistics?
 
 > "Thou shalt not answer questionnaires  
@@ -18,7 +53,7 @@ A big part of this issue at hand relates to the very idea of statistics. What is
 
 >*Why do you do statistics? Why don't scientists just use **common sense?***
 
-It's a naive question in some ways, but most good questions are. There's a lot of good answers to it,^[Including the suggestion that common sense is in short supply among scientists.] but for my money, the best answer is a really simple one: we don't trust ourselves enough. We worry that we're human, and susceptible to all of the biases, temptations and frailties that humans suffer from. Much of statistics is basically a safeguard. Using "common sense" to evaluate evidence means trusting gut instincts, relying on verbal arguments and on using the raw power of human reason to come up with the right answer. Most scientists don't think this approach is likely to work.
+It's a naive question in some ways, but most good questions are. There's a lot of good answers to it,[^sense] but for my money, the best answer is a really simple one: we don't trust ourselves enough. We worry that we're human, and susceptible to all of the biases, temptations and frailties that humans suffer from. Much of statistics is basically a safeguard. Using "common sense" to evaluate evidence means trusting gut instincts, relying on verbal arguments and on using the raw power of human reason to come up with the right answer. Most scientists don't think this approach is likely to work.
 
 In fact, come to think of it, this sounds a lot like a psychological question to me, and since I do work in a psychology department, it seems like a good idea to dig a little deeper here. Is it really plausible to think that this "common sense" approach is very trustworthy? Verbal arguments have to be constructed in language, and all languages have biases -- some things are harder to say than others, and not necessarily because they're false (e.g., quantum electrodynamics is a good theory, but hard to explain in words). The instincts of our "gut" aren't designed to solve scientific problems, they're designed to handle day to day inferences -- and given that biological evolution is slower than cultural change, we should say that they're designed to solve the day to day problems for a *different world* than the one we live in. Most fundamentally, reasoning sensibly requires people to engage in "induction", making wise guesses and going beyond the immediate evidence of the senses to make generalisations about the world. If you think that you can do that without being influenced by various distractors, well, I have a bridge in Brooklyn I'd like to sell you. Heck, as the next section shows, we can't even solve "deductive" problems (ones where no guessing is required) without being influenced by our pre-existing biases.
 
@@ -61,7 +96,7 @@ Now, suppose that people really are perfectly able to set aside their pre-existi
 
 If the psychological data looked like this (or even a good approximation to this), we might feel safe in just trusting our gut instincts. That is, it'd be perfectly okay just to let scientists evaluate data based on their common sense, and not bother with all this murky statistics stuff. However, you guys have taken psych classes, and by now you probably know where this is going...
 
-In a classic study, @Evans1983 ran an experiment looking at exactly this. What they found is that when pre-existing biases (i.e., beliefs) were in agreement with the structure of the data, everything went the way you'd hope: 
+In a classic study, Evans, Barston, and Pollard (1983){cite}`Evans1983` ran an experiment looking at exactly this. What they found is that when pre-existing biases (i.e., beliefs) were in agreement with the structure of the data, everything went the way you'd hope:
 
 
 |                   | conclusion feels true| conclusion feels false |
@@ -76,7 +111,7 @@ Not perfect, but that's pretty good. But look what happens when our intuitive fe
 |argument is valid  |92% say "valid"       |**46% say "valid"**     |
 |argument is invalid|**92% say "valid"**   |8% say "valid"          |
 
-Oh dear, that's not as good. Apparently, when people are presented with a strong argument that contradicts our pre-existing beliefs, we find it pretty hard to even perceive it to be a strong argument (people only did so 46% of the time). Even worse, when people are presented with a weak argument that agrees with our pre-existing biases, almost no-one can see that the argument is weak (people got that one wrong 92% of the time!)^[In my more cynical moments I feel like this fact alone explains 95% of what I read on the internet.]
+Oh dear, that's not as good. Apparently, when people are presented with a strong argument that contradicts our pre-existing beliefs, we find it pretty hard to even perceive it to be a strong argument (people only did so 46% of the time). Even worse, when people are presented with a weak argument that agrees with our pre-existing biases, almost no-one can see that the argument is weak (people got that one wrong 92% of the time!)[^cynical]
 
 If you think about it, it's not as if these data are horribly damning. Overall, people did do better than chance at compensating for their prior biases, since about 60% of people's judgements were correct (you'd expect 50% by chance). Even so, if you were a professional "evaluator of evidence", and someone came along and offered you a magic tool that improves your chances of making the right decision from 60% to (say) 95%, you'd probably jump at it, right? Of course you would. Thankfully, we actually do have a tool that can do this. But it's not magic, it's statistics. So that's reason #1 why scientists love statistics. It's just *too easy* for us to "believe what we want to believe"; so if we want to "believe in the data" instead, we're going to need a bit of help to keep our personal biases under control. That's what statistics does: it helps keep us honest.
 
@@ -91,19 +126,15 @@ The following is a true story (I think...). In 1973, the University of Californi
 |Males  |8442                  |46%               |
 |Females|4321                  |35%               |
 
-...and the were worried about being sued.^[Earlier versions of these notes incorrectly suggested that they actually were sued -- apparently that's not true. There's a nice commentary on this here: https://www.refsmmat.com/posts/2016-05-08-simpsons-paradox-berkeley.html. A big thank you to Wilfried Van Hirtum for pointing this out to me!] Given that there were nearly 13,000 applicants, a difference of 9% in admission rates between males and females is just way too big to be a coincidence. Pretty compelling data, right? And if I were to say to you that these data *actually* reflect a weak bias in favour of women (sort of!), you'd probably think that I was either crazy or sexist. 
+...and the were worried about being sued.[^hirtum] Given that there were nearly 13,000 applicants, a difference of 9% in admission rates between males and females is just way too big to be a coincidence. Pretty compelling data, right? And if I were to say to you that these data *actually* reflect a weak bias in favour of women (sort of!), you'd probably think that I was either crazy or sexist.
 
-Oddly, it's actually sort of true ...when people started looking more carefully at the admissions data [@Bickel1975] they told a rather different story. Specifically, when they looked at it on a department by department basis, it turned out that most of the departments actually had a slightly *higher* success rate for female applicants than for male applicants. Table \@ref(tab:simpsontable) shows the admission figures for the six largest departments (with the names of the departments removed for privacy reasons):
+Oddly, it's actually sort of true ...when people started looking more carefully at the admissions data (Bickel, Hammel, and O’Connell 1975{cite}`Bickel1975`) they told a rather different story. Specifically, when they looked at it on a department by department basis, it turned out that most of the departments actually had a slightly *higher* success rate for female applicants than for male applicants. {numref}`Table %s<tbl:simpson>` shows the admission figures for the six largest departments (with the names of the departments removed for privacy reasons):
 
+```{glue:figure} simpson_table
+:figwidth: 800px
+:name: "tbl:simpson"
 
-```{r simpsontable, echo=FALSE, warning = FALSE}
-simpson <- cbind(c("A", "B", "C", "D", "E", "F"), 
-                 c(825,560,325,417,191,272), 
-                 c("62%","63%","37%","33%","28%","6%"),
-                 c(108,25,593,375,393,341),
-                 c("82%","68%","34%","35%","24%","7%"))
-
-knitr::kable(simpson, col.names = c("Department","Male Applicants", "Male Percent Admitted", "Female Applicants", "Female Percent admitted"), align="c", caption = "Admission figures for the six largest departments by gender")
+Admission figures for the six largest departments by gender
 ```
 
 Remarkably, most departments had a *higher* rate of admissions for females than for males! Yet the overall rate of admission across the university for females was *lower* than for males. How can this be? How can both of these statements be true at the same time?
@@ -131,7 +162,7 @@ I hope that the discussion above helped explain why science in general is so foc
 
 **Why does psychology have so much statistics?**
 
-  To be perfectly honest, there's a few different reasons, some of which are better than others. The most important reason is that psychology is a statistical science. What I mean by that is that the "things" that we study are *people*. Real, complicated, gloriously messy, infuriatingly perverse people. The "things" of physics include object like electrons, and while there are all sorts of complexities that arise in physics, electrons don't have minds of their own. They don't have opinions, they don't differ from each other in weird and arbitrary ways, they don't get bored in the middle of an experiment, and they don't get angry at the experimenter and then deliberately try to sabotage the data set (not that I've ever done that...). At a fundamental level psychology is harder than physics.^[Which might explain why physics is just a teensy bit further advanced as a science than we are.]
+  To be perfectly honest, there's a few different reasons, some of which are better than others. The most important reason is that psychology is a statistical science. What I mean by that is that the "things" that we study are *people*. Real, complicated, gloriously messy, infuriatingly perverse people. The "things" of physics include object like electrons, and while there are all sorts of complexities that arise in physics, electrons don't have minds of their own. They don't have opinions, they don't differ from each other in weird and arbitrary ways, they don't get bored in the middle of an experiment, and they don't get angry at the experimenter and then deliberately try to sabotage the data set (not that I've ever done that...). At a fundamental level psychology is harder than physics.[^physics]
 
   Basically, we teach statistics to you as psychologists because you need to be better at stats than physicists. There's actually a saying used sometimes in physics, to the effect that "if your experiment needs statistics, you should have done a better experiment". They have the luxury of being able to say that because their objects of study are pathetically simple in comparison to the vast mess that confronts social scientists. It's not just psychology, really: most social sciences are desperately reliant on statistics. Not because we're bad experimenters, but because we've picked a harder problem to solve. We teach you stats because you really, really need it.
 
@@ -168,4 +199,13 @@ So far, most of what I've talked about is statistics, and so you'd be forgiven f
 
 But note that "urgent" is different from "important" -- they both matter. I really do want to stress that research design is just as important as data analysis, and this book does spend a fair amount of time on it. However, while statistics has a kind of universality, and provides a set of core tools that are useful for most types of psychological research, the research methods side isn't quite so universal. There are some general principles that everyone should think about, but a lot of research design is very idiosyncratic, and is specific to the area of research that you want to engage in. To the extent that it's the details that matter, those details don't usually show up in an introductory stats and research methods class.
 
+## References
+
+```{bibliography} ../refs.bib
+```
+
 [^auden]: The quote comes from Auden's 1946 poem *Under Which Lyre: A Reactionary Tract for the Times*, delivered as part of a commencement address at Harvard University. The history of the poem is kind of interesting: <http://harvardmagazine.com/2007/11/a-poets-warning.html>
+[^sense]: Including the suggestion that common sense is in short supply among scientists.
+[^cynical]: In my more cynical moments I feel like this fact alone explains 95% of what I read on the internet.
+[^hirtum]: Earlier versions of these notes incorrectly suggested that they actually were sued -- apparently that's not true. There's a nice commentary on this here: https://www.refsmmat.com/posts/2016-05-08-simpsons-paradox-berkeley.html. A big thank you to Wilfried Van Hirtum for pointing this out to me!
+[^physics]: Which might explain why physics is just a teensy bit further advanced as a science than we are.
