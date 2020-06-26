@@ -1,3 +1,37 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: '0.8'
+    jupytext_version: 1.4.1+dev
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+```{code-cell} ipython3
+:tags: ["remove-cell"]
+
+import pandas as pd
+from myst_nb import glue
+```
+
+```{code-cell} ipython3
+:tags: ["remove-cell"]
+scales = pd.DataFrame([
+['nominal', '', '✓'],
+['ordinal', '', '✓'],
+['interval', '✓', '✓'],
+['ratio', '✓', '✓']
+])
+#scales = scales.transpose()
+scales.columns=['', 'continuous', 'discrete']
+glue('scales_cont', scales.set_index(''))
+```
+
 (studydesign)=
 # A brief introduction to research design
 
@@ -159,22 +193,12 @@ These definitions probably seem a bit abstract, but they're pretty simple once y
 
 Discrete variables occur when this rule is violated. For example, nominal scale variables are always discrete: there isn't a type of transportation that falls "in between" trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete. Similarly, ordinal scale variables are always discrete: although "2nd place" does fall between "1st place" and "3rd place", there's nothing that can logically fall in between "1st place" and "2nd place".  Interval scale and ratio scale variables can go either way. As we saw above, response time (a ratio scale variable) is continuous. Temperature in degrees celsius (an interval scale variable) is also continuous. However, the year you went to school (an interval scale variable) is discrete. There's no year in between 2002 and 2003. The number of questions you get right on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn't allow you to be "partially correct", there's nothing in between 5/10 and 6/10. Table \@ref(tab:scalescont) summarises the relationship between the scales of measurement and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible. I'm trying to hammer this point home, because (a) some textbooks get this wrong, and (b) people very often say things like "discrete variable" when they mean "nominal scale variable". It's very unfortunate.
 
+```{glue:figure} scales_cont
+:figwidth: 800px
+:align: center
+:name: "tbl:scales"
 
-
-
-```{r scalescont, tidy=FALSE, echo=FALSE}
-knitr::kable(
-  rbind(c("", "continuous", "discrete"),
-        c("nominal", "", "$\\checkmark$"),
-        c("ordinal", "", "$\\checkmark$"),
-        c("interval", "$\\checkmark$", "$\\checkmark$"),
-        c("ratio", "$\\checkmark$", "$\\checkmark$")
-    
-  )
-  , caption = 'The relationship between the scales of measurement and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible.', align="lcc",
-  booktabs = TRUE
-)
-
+The relationship between the scales of measurement and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible.
 ```
 
 ### Some complexities

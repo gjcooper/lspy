@@ -17,7 +17,6 @@ kernelspec:
 
 import pandas as pd
 from myst_nb import glue
-from IPython.display import display, HTML
 import pyreadr
 import seaborn as sns
 import numpy as np
