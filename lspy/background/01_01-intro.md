@@ -13,7 +13,7 @@ kernelspec:
 ---
 
 ```{code-cell} ipython3
-:tags: ["hide-cell"]
+:tags: ["remove-cell"]
 
 import pandas as pd
 from myst_nb import glue
@@ -25,7 +25,7 @@ import matplotlib.pyplot as plt
 ```
 
 ```{code-cell} ipython3
-:tags: ["hide-cell"]
+:tags: ["remove-cell"]
 
 simpson = pd.DataFrame([
     ["A", "B", "C", "D", "E", "F"],
@@ -40,7 +40,7 @@ glue("simpson_table", simpson.set_index("Department"))
 ```
 
 ```{code-cell} ipython3
-:tags: ["hide-cell"]
+:tags: ["remove-cell"]
 result = pyreadr.read_r('data/berkeley.Rdata')
 berkeley = result['berkeley']
 berkeley_small = result['berkeley.small']
@@ -168,7 +168,7 @@ Here's what's going on. Firstly, notice that the departments are *not* equal to 
 :figwidth: 800px
 :name: "fig:berkeley"
 
-The Berkeley 1973 college admissions data. This figure plots the admission rate for the 85 departments that had at least one female applicant, as a function of the percentage of applicants that were female. The plot is a redrawing of Figure 1 from @Bickel1975. Circles plot departments with more than 40 applicants; the area of the circle is proportional to the total number of applicants. The crosses plot department with fewer than 40 applicants.
+The Berkeley 1973 college admissions data. This figure plots the admission rate for the 85 departments that had at least one female applicant, as a function of the percentage of applicants that were female. The plot is a redrawing of Figure 1 from Bickel, Hammel, and O’Connell (1975){cite}`Bickel1975`. Circles plot departments with more than 40 applicants; the area of the circle is proportional to the total number of applicants. The crosses plot department with fewer than 40 applicants.
 ```
 
 Before leaving this topic entirely, I want to point out something else really critical that is often overlooked in a research methods class. Statistics only solves *part* of the problem. Remember that we started all this with the concern that Berkeley's admissions processes might be unfairly biased against female applicants. When we looked at the "aggregated" data, it did seem like the university was discriminating against women, but when we "disaggregate" and looked at the individual behaviour of all the departments, it turned out that the actual departments were, if anything, slightly biased in favour of women. The gender bias in total admissions was caused by the fact that women tended to self-select for harder departments.  From a legal perspective, that would probably put the university in the clear. Postgraduate admissions are determined at the level of the individual department (and there are good reasons to do that), and at the level of individual departments, the decisions are more or less unbiased (the weak bias in favour of females at that level is small, and not consistent across departments). Since the university can't dictate which departments people choose to apply to, and the decision making takes place at the level of the department it can hardly be held accountable for any biases that those choices produce. 
@@ -224,10 +224,8 @@ But note that "urgent" is different from "important" -- they both matter. I real
 
 ## References
 
-```{bibliography} ../refs.bib
+```{bibliography} ../refs_01.bib
 ```
-
-## Footnotes
 
 [^auden]: The quote comes from Auden's 1946 poem *Under Which Lyre: A Reactionary Tract for the Times*, delivered as part of a commencement address at Harvard University. The history of the poem is kind of interesting: <http://harvardmagazine.com/2007/11/a-poets-warning.html>
 [^sense]: Including the suggestion that common sense is in short supply among scientists.
