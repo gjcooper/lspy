@@ -22,15 +22,25 @@ from myst_nb import glue
 ```{code-cell} ipython3
 :tags: ["remove-cell"]
 scales = pd.DataFrame([
-['nominal', '', '✓'],
-['ordinal', '', '✓'],
-['interval', '✓', '✓'],
-['ratio', '✓', '✓']
+    ['nominal', '', '✓'],
+    ['ordinal', '', '✓'],
+    ['interval', '✓', '✓'],
+    ['ratio', '✓', '✓']
 ])
-#scales = scales.transpose()
 scales.columns=['', 'continuous', 'discrete']
 glue('scales_cont', scales.set_index(''))
 ```
+
+```{code-cell} ipython3
+:tags: ["remove-cell"]
+ivdv = pd.DataFrame([
+    ['to be explained', 'dependent variable (DV)', 'outcome'],
+    ['to do the explaining', 'independent variable (IV)', 'predictor']
+])
+ivdv.columns=['role of the variable', 'classical name', 'modern name']
+glue('indvar_depvar', ivdv.set_index('role of the variable'))
+```
+
 
 (studydesign)=
 # A brief introduction to research design
@@ -191,11 +201,11 @@ There's a second kind of distinction that you need to be aware of, regarding wha
 
 These definitions probably seem a bit abstract, but they're pretty simple once you see some examples. For instance, response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond to a question, then   it's possible for Cameron's response time to lie in between, by taking 3.0 seconds. And of course it would also be possible for David to take 3.031 seconds to respond, meaning that his RT would lie in between Cameron's and Alan's. And while in practice it might be impossible to measure RT that precisely, it's certainly possible in principle. Because we can always find a new value for RT in between any two other ones, we say that RT is continuous.  
 
-Discrete variables occur when this rule is violated. For example, nominal scale variables are always discrete: there isn't a type of transportation that falls "in between" trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete. Similarly, ordinal scale variables are always discrete: although "2nd place" does fall between "1st place" and "3rd place", there's nothing that can logically fall in between "1st place" and "2nd place".  Interval scale and ratio scale variables can go either way. As we saw above, response time (a ratio scale variable) is continuous. Temperature in degrees celsius (an interval scale variable) is also continuous. However, the year you went to school (an interval scale variable) is discrete. There's no year in between 2002 and 2003. The number of questions you get right on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn't allow you to be "partially correct", there's nothing in between 5/10 and 6/10. Table \@ref(tab:scalescont) summarises the relationship between the scales of measurement and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible. I'm trying to hammer this point home, because (a) some textbooks get this wrong, and (b) people very often say things like "discrete variable" when they mean "nominal scale variable". It's very unfortunate.
+Discrete variables occur when this rule is violated. For example, nominal scale variables are always discrete: there isn't a type of transportation that falls "in between" trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete. Similarly, ordinal scale variables are always discrete: although "2nd place" does fall between "1st place" and "3rd place", there's nothing that can logically fall in between "1st place" and "2nd place".  Interval scale and ratio scale variables can go either way. As we saw above, response time (a ratio scale variable) is continuous. Temperature in degrees celsius (an interval scale variable) is also continuous. However, the year you went to school (an interval scale variable) is discrete. There's no year in between 2002 and 2003. The number of questions you get right on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn't allow you to be "partially correct", there's nothing in between 5/10 and 6/10. Table {numref}`%s<tbl:scales>` summarises the relationship between the scales of measurement and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible. I'm trying to hammer this point home, because (a) some textbooks get this wrong, and (b) people very often say things like "discrete variable" when they mean "nominal scale variable". It's very unfortunate.
 
 ```{glue:figure} scales_cont
 :figwidth: 800px
-:align: center
+:align: "center"
 :name: "tbl:scales"
 
 The relationship between the scales of measurement and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible.
@@ -211,20 +221,19 @@ So let's take a classic example, maybe *the* classic example, of a psychological
 
 and then the options presented to the participant are these:
 
->(1) Strongly disagree
->(2) Disagree
->(3) Neither agree nor disagree
->(4) Agree
->(5) Strongly agree
+> 1. Strongly disagree
+> 2. Disagree
+> 3. Neither agree nor disagree
+> 4. Agree
+> 5. Strongly agree
 
 This set of items is an example of a 5-point Likert scale: people are asked to choose among one of several (in this case 5) clearly ordered possibilities, generally with a verbal descriptor given in each case. However, it's not necessary that all items be explicitly described. This is a perfectly good example of a 5-point Likert scale too: 
 
->(1) Strongly disagree
->(2) 
->(3) 
->(4) 
->(5) Strongly agree
-
+> 1. Strongly disagree
+> 2.
+> 3.
+> 4.
+> 5. Strongly agree
 
 Likert scales are very handy, if somewhat limited, tools. The question is, what kind of variable are they? They're obviously discrete, since you can't give a response of 2.5. They're obviously not nominal scale, since the items are ordered; and they're not ratio scale either, since there's no natural zero. 
 
@@ -256,17 +265,15 @@ Not all measurements need to possess all forms of reliability. For instance, edu
 
 Okay, I've got one last piece of terminology that I need to explain to you before moving away from variables. Normally, when we do some research we end up with lots of different variables. Then, when we analyse our data we usually try to explain some of the variables in terms of some of the other variables. It's important to keep the two roles "thing doing the explaining" and "thing being explained" distinct. So let's be clear about this now. Firstly, we might as well get used to the idea of using mathematical symbols to describe variables, since it's going to happen over and over again. Let's denote the "to be explained" variable $Y$, and denote the variables "doing the explaining" as $X_1$, $X_2$, etc. 
 
-Now, when we doing an analysis, we have different names for $X$ and $Y$, since they play different roles in the analysis. The classical names for these roles are **_independent variable_** (IV) and **_dependent variable_** (DV). The IV is the variable that you use to do the explaining (i.e., $X$) and the DV is the variable being explained (i.e., $Y$). The logic behind these names goes like this: if there really is a relationship between $X$ and $Y$ then we can say that $Y$ depends on $X$, and if we have designed our study "properly" then $X$ isn't dependent on anything else. However, I personally find those names horrible: they're hard to remember and they're highly misleading, because (a) the IV is never actually "independent of everything else" and (b) if there's no relationship, then the DV doesn't actually depend on the IV. And in fact, because I'm not the only person who thinks that IV and DV are just awful names, there are a number of alternatives that I find more appealing. The terms that I'll use in these notes are ***predictors*** and ***outcomes***. The idea here is that what you're trying to do is use $X$ (the predictors) to make guesses about $Y$ (the outcomes).[^terminology] This is summarised in Table \@ref(tab:ivdv).
+Now, when we doing an analysis, we have different names for $X$ and $Y$, since they play different roles in the analysis. The classical names for these roles are **_independent variable_** (IV) and **_dependent variable_** (DV). The IV is the variable that you use to do the explaining (i.e., $X$) and the DV is the variable being explained (i.e., $Y$). The logic behind these names goes like this: if there really is a relationship between $X$ and $Y$ then we can say that $Y$ depends on $X$, and if we have designed our study "properly" then $X$ isn't dependent on anything else. However, I personally find those names horrible: they're hard to remember and they're highly misleading, because (a) the IV is never actually "independent of everything else" and (b) if there's no relationship, then the DV doesn't actually depend on the IV. And in fact, because I'm not the only person who thinks that IV and DV are just awful names, there are a number of alternatives that I find more appealing. The terms that I'll use in these notes are ***predictors*** and ***outcomes***. The idea here is that what you're trying to do is use $X$ (the predictors) to make guesses about $Y$ (the outcomes).[^terminology] This is summarised in Table {numref}`%s<tbl:ivdv>`.
 
 
-```{r ivdv, tidy=FALSE, echo=FALSE}
-knitr::kable(rbind
-             (c("to be explained", "dependent variable (DV)", "outcome"),
-             c("to do the explaining", "independent variable (IV)", "predictor")),
-caption = 'The terminology used to distinguish between different roles that a variable can play when analysing a data set. Note that this book will tend to avoid the classical terminology in favour of the newer names.',col.names = c(
-  "role of the variable", "classical name","modern name"),
-  booktabs = TRUE
-)
+```{glue:figure} indvar_depvar
+:figwidth: 800px
+:align: "center"
+:name: "tbl:ivdv"
+
+The terminology used to distinguish between different roles that a variable can play when analysing a data set. Note that this book will tend to avoid the classical terminology in favour of the newer names.
 ```
 
 (researchdesigns)=
@@ -342,9 +349,6 @@ Having just spent the last couple of paragraphs focusing on the choice of partic
 - Sometimes, an experienced scientist will have a "hunch" that a particular measure won't work. While these sorts of hunches have no strict evidentiary value, it's often worth paying attention to them. Because often times people have knowledge that they can't quite verbalise, so there might be something to worry about even if you can't quite say why. In other words, when someone you trust criticises the face validity of your study, it's worth taking the time to think more carefully about your design to see if you can think of reasons why it might go awry. Mind you, if you don't find any reason for concern, then you should probably not worry: after all, face validity really doesn't matter much.
 - Often (very often), completely uninformed people will also have a "hunch" that your research is crap. And they'll criticise it on the internet or something. On close inspection, you'll often notice that these criticisms are actually focused entirely on how the study "looks", but not on anything deeper. The concept of face validity is useful for gently explaining to people that they need to substantiate their arguments further. 
 - Expanding on the last point, if the beliefs of untrained people are critical (e.g., this is often the case for applied research where you actually want to convince policy makers of something or other) then you *have* to care about face validity. Simply because -- whether you like it or not -- a lot of people will use face validity as a proxy for real validity. If you want the government to change a law on scientific, psychological grounds, then it won't matter how good your studies "really" are. If they lack face validity, you'll find that politicians ignore you. Of course, it's somewhat unfair that policy often depends more on appearance than fact, but that's how things go.
- 
-
-
 
 ### Ecological validity
 
@@ -366,7 +370,7 @@ As a general rule confounds are a bigger concern for non-experimental studies, p
 
 However, there's always swings and roundabouts, and when we start thinking about artifacts rather than confounds, the shoe is very firmly on the other foot. For the most part, artifactual results tend to be a concern for experimental studies than for non-experimental studies. To see this, it helps to realise that the reason that a lot of studies are non-experimental is precisely because what the researcher is trying to do is examine human behaviour in a more naturalistic context. By working in a more real-world context, you lose experimental control (making yourself vulnerable to confounds) but because you tend to be studying human psychology "in the wild" you reduce the chances of getting an artifactual result. Or, to put it another way, when you take psychology out of the wild and bring it into the lab (which we usually have to do to gain our experimental control), you always run the risk of accidentally studying something different than you wanted to study: which is more or less the definition of an artifact.
 
-Be warned though: the above is a rough guide only. It's absolutely possible to have confounds in an experiment, and to get artifactual results with non-experimental studies. This can happen for all sorts of reasons, not least of which is researcher error. In practice, it's really hard to think everything through ahead of time, and even very good researchers make mistakes. But other times it's unavoidable, simply because the researcher has ethics (e.g., see \@ref(differentialattrition)). 
+Be warned though: the above is a rough guide only. It's absolutely possible to have confounds in an experiment, and to get artifactual results with non-experimental studies. This can happen for all sorts of reasons, not least of which is researcher error. In practice, it's really hard to think everything through ahead of time, and even very good researchers make mistakes. But other times it's unavoidable, simply because the researcher has ethics (e.g., see {ref}`differentialattrition`).
 
 Okay. There's a sense in which almost any threat to validity can be characterised as a confound or an artifact: they're pretty vague concepts. So let's have a look at some of the most common examples...
 
