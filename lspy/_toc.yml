@@ -3,3 +3,6 @@
 - header: Part I. Background
 - file: background/01_01-intro
 - file: background/01_02-studydesign
+- header: Part II. An Introduction to Python
+- file: python/02_03-introPython
+- file: python/02_04-mechanics
