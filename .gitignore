@@ -1,6 +1,10 @@
 # Example pybook
 pybook/
 
+#Source bookdown project
+bookdown/
+
+
 # vim swap files
 *.swp
 

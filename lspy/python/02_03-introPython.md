@@ -917,7 +917,7 @@ months[stock_levels == "out"]
 ```
 Alternatively, if I want to know when the bookshop was either low on copies or out of copies, I could do this:
 ```{code-cell} ipython3
-months[stock_levels == "out" | stock_levels == "low"]
+months[stock_levels == "out" or stock_levels == "low"]
 ```
 or this
 ```{code-cell} ipython3
